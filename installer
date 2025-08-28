@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Debian/Ubuntu/WSL only
+if ! command -v apt-get >/dev/null 2>&1; then
+  echo "This installer only supports Debian/Ubuntu (apt-get)."
+  exit 1
+fi
+
+# Use sudo if not root
+SUDO=""
+if [ "${EUID:-$(id -u)}" -ne 0 ]; then
+  SUDO="sudo"
+fi
+
+echo "[*] Updating package lists…"
+$SUDO apt-get update
+
+echo "[*] Installing build tools and ncurses (wide) dev headers…"
+$SUDO apt-get install -y build-essential libncursesw5-dev
+
+echo "[✓] Dependencies installed."
