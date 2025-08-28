@@ -2,18 +2,23 @@
 #include <ncursesw/curses.h>
 #include <string.h>
 
-int QuoteStartPoint(int axis, int quoteLen)
+int QuoteStartPointY(int cols, int quoteLen)
 {
-  // Axis middle
-  int axisMid = axis/2;
+  // Rows middle
+  int colsMid = cols/2;
   
   // Quote offset
   int offset = quoteLen / 2;
 
   // Calculations
-  int startPoint = axisMid - offset;
+  int startPoint = colsMid - offset;
 
   return startPoint;
+}
+
+int TerminalMidHeight(int rows)
+{
+  return rows / 2;
 }
 
 void PrintQuote(const char* quote, int quoteLen)
@@ -23,7 +28,7 @@ void PrintQuote(const char* quote, int quoteLen)
   getmaxyx(stdscr, rows, cols);
 
   // Get the starting point and move the cursor there
-  move(QuoteStartPoint(rows, quoteLen), QuoteStartPoint(cols, quoteLen));
+  move(TerminalMidHeight(rows), QuoteStartPointY(cols, quoteLen));
 
   // Print the quote
   addstr(quote);
