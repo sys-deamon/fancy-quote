@@ -8,7 +8,7 @@ A minimal terminal eye candy.
 
 ## Usage
 
-*Important!* This only works for Debian based distributions, support for other will be added later cuz im neub right now.
+*NOTE!* The installer only works for Debian based distributions, support for other will be added later cuz im neub right now. However you can just for now compile the source code yourself.
 
 ```shell
 git clone <URL>

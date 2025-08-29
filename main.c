@@ -2,21 +2,18 @@
 #include <ncursesw/curses.h>
 #include <string.h>
 
-int QuoteStartPointY(int cols, int quoteLen)
+int MidCol(int cols, int quoteLen)
 {
-  // Rows middle
-  int colsMid = cols/2;
+  // Calculate Columns middle
+  int colsMid = cols / 2;
   
   // Quote offset
   int offset = quoteLen / 2;
 
-  // Calculations
-  int startPoint = colsMid - offset;
-
-  return startPoint;
+  return colsMid - offset;
 }
 
-int TerminalMidHeight(int rows)
+int MidRow(int rows)
 {
   return rows / 2;
 }
@@ -27,8 +24,8 @@ void PrintQuote(const char* quote, int quoteLen)
   int rows, cols = 0;
   getmaxyx(stdscr, rows, cols);
 
-  // Get the starting point and move the cursor there
-  move(TerminalMidHeight(rows), QuoteStartPointY(cols, quoteLen));
+  // Get the mid point of terminal and move the cursor there
+  move(MidRow(rows), MidCol(cols, quoteLen));
 
   // Print the quote
   addstr(quote);
@@ -44,9 +41,6 @@ int main(int argc, char *argv[])
   
   // Initializing ncurses mode
   initscr();
-
-  // Hide the cursor
-  curs_set(0);
   
   // Clear the screen
   clear();
@@ -54,10 +48,15 @@ int main(int argc, char *argv[])
   // Move the cursor to the top left corner of the terminal
   move(0,0);
 
-  // Print quote to screen
+  // Calculate quote length
   int quoteLen = strlen(argv[1]);
+
+  // Print the quote to screen
   PrintQuote(argv[1], quoteLen);
 
+  // Hide the cursor
+  curs_set(0);
+  
   // Flush/Apply the changes to the actual terminal
   refresh();
 
