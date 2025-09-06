@@ -2,7 +2,6 @@
 
 A minimal terminal eye candy.
 
----
 # Features
 
 - Uses `en_us.UTF-8` encoder.
@@ -38,3 +37,6 @@ After that just run the executable:
 ```
 
 press any key to close the program and return to previous session.
+
+# Screenshots
+![screenshot](./demo.png)
