@@ -1,10 +1,13 @@
 # Fancy Quote
 
----
-
 A minimal terminal eye candy.
 
 ---
+# Features
+
+- Uses `en_us.UTF-8` encoder.
+
+>Make sure your terminal is set to the same encoder. You can check it by executing `locale` in your terminal.
 
 ## Usage
 
@@ -20,7 +23,7 @@ go into the folder and execute the `installer`
 installer
 ```
 
-This will first update your package database and install *ncursesw* libraries.
+This will first update your package database and install *ncurses* libraries.
 
 You can then compile the program with:
 
