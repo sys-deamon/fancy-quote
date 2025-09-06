@@ -2,6 +2,9 @@
 #include <ncursesw/curses.h>
 #include <string.h>
 
+#include <locale.h>
+#include <langinfo.h>
+
 int MidCol(int cols, int quoteLen)
 {
   // Calculate Columns middle
@@ -21,11 +24,11 @@ int MidRow(int rows)
 void PrintQuote(const char* quote, int quoteLen)
 {
   // Get the terminal width and height
-  int rows, cols = 0;
-  getmaxyx(stdscr, rows, cols);
+  int totalScreenRows, totalScreenCols = 0;
+  getmaxyx(stdscr, totalScreenRows, totalScreenCols);
 
   // Get the mid point of terminal and move the cursor there
-  move(MidRow(rows), MidCol(cols, quoteLen));
+  move(MidRow(totalScreenRows), MidCol(totalScreenCols, quoteLen));
 
   // Print the quote
   addstr(quote);
@@ -33,6 +36,12 @@ void PrintQuote(const char* quote, int quoteLen)
 
 int main(int argc, char *argv[])
 {
+  // sets the locale encoder to en_US.UTF-8
+  setlocale(LC_ALL, "en_US.UTF-8");
+
+  // Debug statement for checking current set encoder
+  // printf("codeset = %s\n", nl_langinfo(CODESET));
+
   if (argc < 2)
     {
       printf("Please read the man page for proper usage!\n");
