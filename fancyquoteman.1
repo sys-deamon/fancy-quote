@@ -4,9 +4,9 @@
 fancyquote \- display a centered quote in the terminal
 .SH DESCRIPTION
 .B fancyquote
-prints a centered quote inside a framed rectangle using the wide-character ncurses API,
-wrapping long lines, handling multi-line input, and optionally decorating the frame with
-an author banner. If no arguments are supplied, the quote is read from standard input.
+prints a centered quote using the wide-character ncurses API, wrapping long lines and
+handling multi-line input until interrupted (with any key press). If no arguments are
+supplied, the quote is read from standard input.
 .SH OPTIONS
 .TP
 .B -h, --help
@@ -14,29 +14,12 @@ Display usage information and exit.
 .TP
 .B -V, --version
 Display version information and exit.
-.TP
-.B -a, --author \fIname\fR
-Show \fIname\fR centered along the top border of the frame.
-.TP
-.B -ct, --colortext \fIcolor\fR
-Render the quote text using \fIcolor\fR.
-.TP
-.B -cr, --colorrectangle \fIcolor\fR
-Render the frame using \fIcolor\fR.
-.TP
-.B -ca, --colorauth \fIcolor\fR
-Render the author banner using \fIcolor\fR.
-.PP
-Color arguments accept the standard ncurses color names (black, red, green, yellow, blue,
-magenta, cyan, white) or a numeric color index that your terminal supports.
 .SH EXIT STATUS
 0 on success, non-zero on error.
 .SH EXAMPLES
 fancyquote Hello there General Kenobi
 .br
 printf 'It\'s over, Anakin.\nI have the high ground.' | fancyquote
-.br
-fancyquote -a "Obi-Wan Kenobi" -ct yellow -cr blue -ca white "Hello there"
 .fi
 .SH AUTHORS
 Written by sys-deamon on GitHub
