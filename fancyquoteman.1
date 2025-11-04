@@ -4,13 +4,22 @@
 fancyquote \- display a centered quote in the terminal
 .SH DESCRIPTION
 .B fancyquote
-prints a centered quote using ncurses and runs until interrupted (with any key press)
+prints a centered quote using the wide-character ncurses API, wrapping long lines and
+handling multi-line input until interrupted (with any key press). If no arguments are
+supplied, the quote is read from standard input.
 .SH OPTIONS
-No options support yet
+.TP
+.B -h, --help
+Display usage information and exit.
+.TP
+.B -V, --version
+Display version information and exit.
 .SH EXIT STATUS
 0 on success, non-zero on error.
 .SH EXAMPLES
-fancyquote "O Hello There"
+fancyquote Hello there General Kenobi
+.br
+printf 'It\'s over, Anakin.\nI have the high ground.' | fancyquote
 .fi
 .SH AUTHORS
 Written by sys-deamon on GitHub

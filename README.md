@@ -4,7 +4,10 @@ A minimal terminal eye candy.
 
 # Features
 
-- Uses `en_us.UTF-8` encoder.
+- Automatically uses your current UTF-8 locale when available (falls back to `en_US.UTF-8`).
+- Accepts multi-word quotes without quoting each argument, gracefully wraps long lines, and reads from standard input when no arguments are provided.
+- Centers multi-line and wide character quotes using the wide-character ncurses API.
+- Provides `--help` and `--version` flags for quick reference.
 
 >Make sure your terminal is set to the same encoder. You can check it by executing `locale` in your terminal.
 
@@ -33,10 +36,18 @@ make
 After that just run the executable:
 
 ```shell
-./fancy-quote "Hello World"
+./fancyquote Hello there General Kenobi
 ```
 
-press any key to close the program and return to previous session.
+Quotes containing newlines can be piped in as well:
+
+```shell
+printf 'It\'s over, Anakin.\nI have the high ground.' | ./fancyquote
+```
+
+When running with piped input, the app renders the quote and exits automatically.
+
+Press any key to close the program and return to the previous session.
 
 # Screenshots
 ![screenshot](./demo.png)
