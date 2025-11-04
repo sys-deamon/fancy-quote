@@ -94,13 +94,11 @@ ParseArguments(int argc, char *argv[], CLIOptions *options)
   options->firstQuoteIndex = argc;
   options->hasQuoteFromArgs = false;
 
-  bool endOfOptions = false;
-
   for (int i = 1; i < argc; ++i)
     {
       char *arg = argv[i];
 
-      if (!endOfOptions && strcmp(arg, "--") == 0)
+      if (strcmp(arg, "--") == 0)
         {
           if (i + 1 < argc)
             {
@@ -115,7 +113,7 @@ ParseArguments(int argc, char *argv[], CLIOptions *options)
           break;
         }
 
-      if (!endOfOptions && arg[0] == '-' && arg[1] != '\0')
+      if (arg[0] == '-' && arg[1] != '\0')
         {
           if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0)
             {
